@@ -26,6 +26,16 @@ public class geometricalCalculate extends JFrame{
 	double sectorAreaDouble;
 	double sectorPerimeterDouble;
 	
+	JButton jbtCalculateSquare = new JButton("Calculate");
+	JButton jbtCleanSquare = new JButton("Clean");
+	JTextField squareLength = new JTextField(5);
+	JTextField squareArea = new JTextField(5);
+	JTextField squarePerimeter = new JTextField(5);
+	
+	double squareLengthDouble;
+	double squareAreaDouble;
+	double squarePerimeterDouble;
+	
 	public geometricalCalculate(){
 	
 		JPanel circleTitle = new JPanel();
@@ -149,6 +159,62 @@ public class geometricalCalculate extends JFrame{
 			}
 			
 		});
+		
+		JPanel squareTitle = new JPanel();
+		squareTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
+		squareTitle.setSize(100,50);
+		squareTitle.add(new JLabel("Square:"));
+		
+		JPanel squareLengthInput = new JPanel();
+		squareLengthInput.setLayout(new FlowLayout(FlowLayout.LEFT));
+		squareLengthInput.setSize(300,50);
+		squareLengthInput.add(new JLabel("Length"));
+		squareLengthInput.add(squareLength);
+		squareLengthInput.add(jbtCalculateSquare);
+		squareLengthInput.add(jbtCleanSquare);
+		
+		JPanel squareAreaCalculate = new JPanel();
+		squareAreaCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		squareAreaCalculate.setSize(200,50);
+		squareAreaCalculate.add(new JLabel("The area is: "));
+		squareAreaCalculate.add(squareArea);
+		
+		JPanel squarePerimeterCalculate = new JPanel();
+		squarePerimeterCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		squarePerimeterCalculate.setSize(200,50);
+		squarePerimeterCalculate.add(new JLabel("The perimeter is: "));
+		squarePerimeterCalculate.add(squarePerimeter);
+		
+		add(squareTitle);
+		add(squareLengthInput);
+		add(squareAreaCalculate);
+		add(squarePerimeterCalculate);
+		
+		
+		jbtCalculateSquare.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				squareLengthDouble = Double.parseDouble(squareLength.getText());
+	
+				squarePerimeterDouble = 4*squareLengthDouble;
+				squareAreaDouble = Math.pow(squareLengthDouble,2);
+				
+				squareArea.setText(String.format("%.2f" , squareAreaDouble));
+				squarePerimeter.setText(String.format("%.2f" , squarePerimeterDouble));
+			}	
+		});
+		
+		jbtCleanSquare.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				squareLength.setText("");
+				squareArea.setText("");
+				squarePerimeter.setText("");
+			}
+			
+		});
 	}
 	
 	public static void main(String[] args){
@@ -158,7 +224,7 @@ public class geometricalCalculate extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(300,600);
 		frame.setVisible(true);
-		frame.setLayout(new GridLayout(4,1));	
+		frame.setLayout(new GridLayout(13,1));	
 	}
 
 }
