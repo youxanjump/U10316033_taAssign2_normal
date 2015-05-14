@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 public class geometricalCalculate extends JFrame{
-	
+	//create values of circle
 	JButton jbtCalculateCircle = new JButton("Calculate");
 	JButton jbtCleanCircle = new JButton("Clean");
 	JTextField radius = new JTextField(5);
@@ -13,7 +13,7 @@ public class geometricalCalculate extends JFrame{
 	double radiusDouble;
 	double circleAreaDouble;
 	double circlePerimeterDouble;
-	
+	//create values of sector
 	JButton jbtCalculateSector = new JButton("Calculate");
 	JButton jbtCleanSector = new JButton("Clean");
 	JTextField sectorRadius = new JTextField(5);
@@ -25,7 +25,7 @@ public class geometricalCalculate extends JFrame{
 	double sectorAngleDouble;
 	double sectorAreaDouble;
 	double sectorPerimeterDouble;
-	
+	//create values of square
 	JButton jbtCalculateSquare = new JButton("Calculate");
 	JButton jbtCleanSquare = new JButton("Clean");
 	JTextField squareLength = new JTextField(5);
@@ -37,7 +37,7 @@ public class geometricalCalculate extends JFrame{
 	double squarePerimeterDouble;
 	
 	public geometricalCalculate(){
-	
+		//input and calculate the circle
 		JPanel circleTitle = new JPanel();
 		circleTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
 		circleTitle.setSize(100,50);
@@ -93,7 +93,7 @@ public class geometricalCalculate extends JFrame{
 			
 		});
 		
-		
+		//input and calculate the sector
 		JPanel sectorTitle = new JPanel();
 		sectorTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
 		sectorTitle.setSize(100,50);
@@ -159,7 +159,7 @@ public class geometricalCalculate extends JFrame{
 			}
 			
 		});
-		
+		//input and calculate the square
 		JPanel squareTitle = new JPanel();
 		squareTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
 		squareTitle.setSize(100,50);
