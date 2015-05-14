@@ -14,6 +14,18 @@ public class geometricalCalculate extends JFrame{
 	double circleAreaDouble;
 	double circlePerimeterDouble;
 	
+	JButton jbtCalculateSector = new JButton("Calculate");
+	JButton jbtCleanSector = new JButton("Clean");
+	JTextField sectorRadius = new JTextField(5);
+	JTextField sectorAngle = new JTextField(5);
+	JTextField sectorArea = new JTextField(5);
+	JTextField sectorPerimeter = new JTextField(5);
+	
+	double sectorRadiusDouble;
+	double sectorAngleDouble;
+	double sectorAreaDouble;
+	double sectorPerimeterDouble;
+	
 	public geometricalCalculate(){
 	
 		JPanel circleTitle = new JPanel();
@@ -67,6 +79,73 @@ public class geometricalCalculate extends JFrame{
 				radius.setText("");
 				circleArea.setText("");
 				circlePerimeter.setText("");
+			}
+			
+		});
+		
+		
+		JPanel sectorTitle = new JPanel();
+		sectorTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
+		sectorTitle.setSize(100,50);
+		sectorTitle.add(new JLabel("Sector:"));
+		
+		JPanel sectorRadiusInput = new JPanel();
+		sectorRadiusInput.setLayout(new FlowLayout(FlowLayout.LEFT));
+		sectorRadiusInput.setSize(200,50);
+		sectorRadiusInput.add(new JLabel("Radius"));
+		sectorRadiusInput.add(sectorRadius);
+		
+		JPanel sectorAngleInput = new JPanel();
+		sectorAngleInput.setLayout(new FlowLayout(FlowLayout.LEFT));
+		sectorAngleInput.setSize(300,50);
+		sectorAngleInput.add(new JLabel("Angle"));
+		sectorAngleInput.add(sectorAngle);
+		sectorAngleInput.add(jbtCalculateSector);
+		sectorAngleInput.add(jbtCleanSector);
+		
+		JPanel sectorAreaCalculate = new JPanel();
+		sectorAreaCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		sectorAreaCalculate.setSize(200,50);
+		sectorAreaCalculate.add(new JLabel("The area is: "));
+		sectorAreaCalculate.add(sectorArea);
+		
+		JPanel sectorPerimeterCalculate = new JPanel();
+		sectorPerimeterCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		sectorPerimeterCalculate.setSize(200,50);
+		sectorPerimeterCalculate.add(new JLabel("The perimeter is: "));
+		sectorPerimeterCalculate.add(sectorPerimeter);
+		
+		add(sectorTitle);
+		add(sectorRadiusInput);
+		add(sectorAngleInput);
+		add(sectorAreaCalculate);
+		add(sectorPerimeterCalculate);
+		
+		
+		
+		jbtCalculateSector.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				sectorRadiusDouble = Double.parseDouble(sectorRadius.getText());
+				sectorAngleDouble = Double.parseDouble(sectorAngle.getText());
+				
+				sectorPerimeterDouble = (2*sectorRadiusDouble*Math.PI*(sectorAngleDouble/360)) + (2*sectorRadiusDouble);
+				sectorAreaDouble = Math.PI*Math.pow(sectorRadiusDouble,2)*(sectorAngleDouble/360);
+				
+				sectorArea.setText(String.format("%.2f" , sectorAreaDouble));
+				sectorPerimeter.setText(String.format("%.2f" , sectorPerimeterDouble));
+			}	
+		});
+		
+		jbtCleanSector.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				sectorRadius.setText("");
+				sectorArea.setText("");
+				sectorPerimeter.setText("");
+				sectorAngle.setText("");
 			}
 			
 		});
