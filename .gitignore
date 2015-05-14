@@ -1,0 +1,86 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.*;
+public class geometricalCalculate extends JFrame{
+	
+	JButton jbtCalculateCircle = new JButton("Calculate");
+	JButton jbtCleanCircle = new JButton("Clean");
+	JTextField radius = new JTextField(5);
+	JTextField circleArea = new JTextField(5);
+	JTextField circlePerimeter = new JTextField(5);
+	
+	double radiusDouble;
+	double circleAreaDouble;
+	double circlePerimeterDouble;
+	
+	public geometricalCalculate(){
+	
+		JPanel circleTitle = new JPanel();
+		circleTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
+		circleTitle.setSize(100,50);
+		circleTitle.add(new JLabel("Circle:"));
+		
+		JPanel circleRadiusInput = new JPanel();
+		circleRadiusInput.setLayout(new FlowLayout(FlowLayout.LEFT));
+		circleRadiusInput.setSize(300,50);
+		circleRadiusInput.add(new JLabel("Radius"));
+		circleRadiusInput.add(radius);
+		circleRadiusInput.add(jbtCalculateCircle);
+		circleRadiusInput.add(jbtCleanCircle);
+		
+		JPanel circleAreaCalculate = new JPanel();
+		circleAreaCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		circleAreaCalculate.setSize(200,50);
+		circleAreaCalculate.add(new JLabel("The area is: "));
+		circleAreaCalculate.add(circleArea);
+		
+		JPanel circlePerimeterCalculate = new JPanel();
+		circlePerimeterCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		circlePerimeterCalculate.setSize(200,50);
+		circlePerimeterCalculate.add(new JLabel("The perimeter is: "));
+		circlePerimeterCalculate.add(circlePerimeter);
+		
+		add(circleTitle);
+		add(circleRadiusInput);
+		add(circleAreaCalculate);
+		add(circlePerimeterCalculate);
+		
+		jbtCalculateCircle.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				radiusDouble = Double.parseDouble(radius.getText());
+				
+				circlePerimeterDouble = 2*radiusDouble*Math.PI;
+				circleAreaDouble = Math.PI*Math.pow(radiusDouble,2);
+				
+				circleArea.setText(String.format("%.2f" , circleAreaDouble));
+				circlePerimeter.setText(String.format("%.2f" , circlePerimeterDouble));
+			}	
+		});
+		
+		jbtCleanCircle.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				radius.setText("");
+				circleArea.setText("");
+				circlePerimeter.setText("");
+			}
+			
+		});
+	}
+	
+	public static void main(String[] args){
+		geometricalCalculate frame = new geometricalCalculate();
+		frame.setTitle("U10316033_GeoCalculate");
+		frame.setLocationRelativeTo(null); // Center the frame
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(300,600);
+		frame.setVisible(true);
+		frame.setLayout(new GridLayout(4,1));	
+	}
+
+}
+		
