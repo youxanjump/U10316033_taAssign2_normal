@@ -1,220 +1,109 @@
-# U10316033_taAssign2_normal
-geometricalCalculate
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 public class geometricalCalculate extends JFrame{
-	//create values of circle
-	JButton jbtCalculateCircle = new JButton("Calculate");
-	JButton jbtCleanCircle = new JButton("Clean");
-	JTextField radius = new JTextField(5);
-	JTextField circleArea = new JTextField(5);
-	JTextField circlePerimeter = new JTextField(5);
-	
-	double radiusDouble;
-	double circleAreaDouble;
-	double circlePerimeterDouble;
-	//create values of sector
-	JButton jbtCalculateSector = new JButton("Calculate");
-	JButton jbtCleanSector = new JButton("Clean");
-	JTextField sectorRadius = new JTextField(5);
-	JTextField sectorAngle = new JTextField(5);
-	JTextField sectorArea = new JTextField(5);
-	JTextField sectorPerimeter = new JTextField(5);
-	
-	double sectorRadiusDouble;
-	double sectorAngleDouble;
-	double sectorAreaDouble;
-	double sectorPerimeterDouble;
-	//create values of square
-	JButton jbtCalculateSquare = new JButton("Calculate");
-	JButton jbtCleanSquare = new JButton("Clean");
-	JTextField squareLength = new JTextField(5);
-	JTextField squareArea = new JTextField(5);
-	JTextField squarePerimeter = new JTextField(5);
-	
-	double squareLengthDouble;
-	double squareAreaDouble;
-	double squarePerimeterDouble;
 	
 	public geometricalCalculate(){
-		//input and calculate the circle
-		JPanel circleTitle = new JPanel();
-		circleTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
-		circleTitle.setSize(100,50);
-		circleTitle.add(new JLabel("Circle:"));
 		
-		JPanel circleRadiusInput = new JPanel();
-		circleRadiusInput.setLayout(new FlowLayout(FlowLayout.LEFT));
-		circleRadiusInput.setSize(300,50);
-		circleRadiusInput.add(new JLabel("Radius"));
-		circleRadiusInput.add(radius);
-		circleRadiusInput.add(jbtCalculateCircle);
-		circleRadiusInput.add(jbtCleanCircle);
 		
-		JPanel circleAreaCalculate = new JPanel();
-		circleAreaCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
-		circleAreaCalculate.setSize(200,50);
-		circleAreaCalculate.add(new JLabel("The area is: "));
-		circleAreaCalculate.add(circleArea);
+		circle circle = new circle();
 		
-		JPanel circlePerimeterCalculate = new JPanel();
-		circlePerimeterCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
-		circlePerimeterCalculate.setSize(200,50);
-		circlePerimeterCalculate.add(new JLabel("The perimeter is: "));
-		circlePerimeterCalculate.add(circlePerimeter);
+		add(circle.circleTitle());
+		add(circle.circleRadiusInput());
+		add(circle.circleAreaCalculate());
+		add(circle.circlePerimeterCalculate());
 		
-		add(circleTitle);
-		add(circleRadiusInput);
-		add(circleAreaCalculate);
-		add(circlePerimeterCalculate);
-		
-		jbtCalculateCircle.addActionListener(new ActionListener(){
+		circle.jbtCalculateCircle.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				radiusDouble = Double.parseDouble(radius.getText());
+				circle.radiusDouble = Double.parseDouble(circle.radius.getText());
 				
-				circlePerimeterDouble = 2*radiusDouble*Math.PI;
-				circleAreaDouble = Math.PI*Math.pow(radiusDouble,2);
+				circle.circlePerimeterDouble = 2*circle.radiusDouble*Math.PI;
+				circle.circleAreaDouble = Math.PI*Math.pow(circle.radiusDouble,2);
 				
-				circleArea.setText(String.format("%.2f" , circleAreaDouble));
-				circlePerimeter.setText(String.format("%.2f" , circlePerimeterDouble));
+				circle.circleArea.setText(String.format("%.2f" , circle.circleAreaDouble));
+				circle.circlePerimeter.setText(String.format("%.2f" , circle.circlePerimeterDouble));
 			}	
 		});
 		
-		jbtCleanCircle.addActionListener(new ActionListener(){
+		circle.jbtCleanCircle.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				radius.setText("");
-				circleArea.setText("");
-				circlePerimeter.setText("");
+				circle.radius.setText("");
+				circle.circleArea.setText("");
+				circle.circlePerimeter.setText("");
 			}
 			
 		});
 		
-		//input and calculate the sector
-		JPanel sectorTitle = new JPanel();
-		sectorTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
-		sectorTitle.setSize(100,50);
-		sectorTitle.add(new JLabel("Sector:"));
+		sector sector = new sector();
 		
-		JPanel sectorRadiusInput = new JPanel();
-		sectorRadiusInput.setLayout(new FlowLayout(FlowLayout.LEFT));
-		sectorRadiusInput.setSize(200,50);
-		sectorRadiusInput.add(new JLabel("Radius"));
-		sectorRadiusInput.add(sectorRadius);
+		add(sector.sectorTitle());
+		add(sector.sectorRadiusInput());
+		add(sector.sectorAngleInput());
+		add(sector.sectorAreaCalculate());
+		add(sector.sectorPerimeterCalculate());
 		
-		JPanel sectorAngleInput = new JPanel();
-		sectorAngleInput.setLayout(new FlowLayout(FlowLayout.LEFT));
-		sectorAngleInput.setSize(300,50);
-		sectorAngleInput.add(new JLabel("Angle"));
-		sectorAngleInput.add(sectorAngle);
-		sectorAngleInput.add(jbtCalculateSector);
-		sectorAngleInput.add(jbtCleanSector);
-		
-		JPanel sectorAreaCalculate = new JPanel();
-		sectorAreaCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
-		sectorAreaCalculate.setSize(200,50);
-		sectorAreaCalculate.add(new JLabel("The area is: "));
-		sectorAreaCalculate.add(sectorArea);
-		
-		JPanel sectorPerimeterCalculate = new JPanel();
-		sectorPerimeterCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
-		sectorPerimeterCalculate.setSize(200,50);
-		sectorPerimeterCalculate.add(new JLabel("The perimeter is: "));
-		sectorPerimeterCalculate.add(sectorPerimeter);
-		
-		add(sectorTitle);
-		add(sectorRadiusInput);
-		add(sectorAngleInput);
-		add(sectorAreaCalculate);
-		add(sectorPerimeterCalculate);
-		
-		
-		
-		jbtCalculateSector.addActionListener(new ActionListener(){
+		sector.jbtCalculateSector.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				sectorRadiusDouble = Double.parseDouble(sectorRadius.getText());
-				sectorAngleDouble = Double.parseDouble(sectorAngle.getText());
+				sector.sectorRadiusDouble = Double.parseDouble(sector.sectorRadius.getText());
+				sector.sectorAngleDouble = Double.parseDouble(sector.sectorAngle.getText());
 				
-				sectorPerimeterDouble = (2*sectorRadiusDouble*Math.PI*(sectorAngleDouble/360)) + (2*sectorRadiusDouble);
-				sectorAreaDouble = Math.PI*Math.pow(sectorRadiusDouble,2)*(sectorAngleDouble/360);
+				sector.sectorPerimeterDouble = (2*sector.sectorRadiusDouble*Math.PI*(sector.sectorAngleDouble/360)) + (2*sector.sectorRadiusDouble);
+				sector.sectorAreaDouble = Math.PI*Math.pow(sector.sectorRadiusDouble,2)*(sector.sectorAngleDouble/360);
 				
-				sectorArea.setText(String.format("%.2f" , sectorAreaDouble));
-				sectorPerimeter.setText(String.format("%.2f" , sectorPerimeterDouble));
+				sector.sectorArea.setText(String.format("%.2f" , sector.sectorAreaDouble));
+				sector.sectorPerimeter.setText(String.format("%.2f" , sector.sectorPerimeterDouble));
 			}	
 		});
 		
-		jbtCleanSector.addActionListener(new ActionListener(){
+		sector.jbtCleanSector.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				sectorRadius.setText("");
-				sectorArea.setText("");
-				sectorPerimeter.setText("");
-				sectorAngle.setText("");
+				sector.sectorRadius.setText("");
+				sector.sectorArea.setText("");
+				sector.sectorPerimeter.setText("");
+				sector.sectorAngle.setText("");
 			}
 			
 		});
-		//input and calculate the square
-		JPanel squareTitle = new JPanel();
-		squareTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
-		squareTitle.setSize(100,50);
-		squareTitle.add(new JLabel("Square:"));
 		
-		JPanel squareLengthInput = new JPanel();
-		squareLengthInput.setLayout(new FlowLayout(FlowLayout.LEFT));
-		squareLengthInput.setSize(300,50);
-		squareLengthInput.add(new JLabel("Length"));
-		squareLengthInput.add(squareLength);
-		squareLengthInput.add(jbtCalculateSquare);
-		squareLengthInput.add(jbtCleanSquare);
+		square square = new square();
 		
-		JPanel squareAreaCalculate = new JPanel();
-		squareAreaCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
-		squareAreaCalculate.setSize(200,50);
-		squareAreaCalculate.add(new JLabel("The area is: "));
-		squareAreaCalculate.add(squareArea);
-		
-		JPanel squarePerimeterCalculate = new JPanel();
-		squarePerimeterCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
-		squarePerimeterCalculate.setSize(200,50);
-		squarePerimeterCalculate.add(new JLabel("The perimeter is: "));
-		squarePerimeterCalculate.add(squarePerimeter);
-		
-		add(squareTitle);
-		add(squareLengthInput);
-		add(squareAreaCalculate);
-		add(squarePerimeterCalculate);
+		add(square.squareTitle());
+		add(square.squareLengthInput());
+		add(square.squareAreaCalculate());
+		add(square.squarePerimeterCalculate());
 		
 		
-		jbtCalculateSquare.addActionListener(new ActionListener(){
+		square.jbtCalculateSquare.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				squareLengthDouble = Double.parseDouble(squareLength.getText());
+				square.squareLengthDouble = Double.parseDouble(square.squareLength.getText());
 	
-				squarePerimeterDouble = 4*squareLengthDouble;
-				squareAreaDouble = Math.pow(squareLengthDouble,2);
+				square.squarePerimeterDouble = 4*square.squareLengthDouble;
+				square.squareAreaDouble = Math.pow(square.squareLengthDouble,2);
 				
-				squareArea.setText(String.format("%.2f" , squareAreaDouble));
-				squarePerimeter.setText(String.format("%.2f" , squarePerimeterDouble));
+				square.squareArea.setText(String.format("%.2f" , square.squareAreaDouble));
+				square.squarePerimeter.setText(String.format("%.2f" , square.squarePerimeterDouble));
 			}	
 		});
 		
-		jbtCleanSquare.addActionListener(new ActionListener(){
+		square.jbtCleanSquare.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				squareLength.setText("");
-				squareArea.setText("");
-				squarePerimeter.setText("");
+				square.squareLength.setText("");
+				square.squareArea.setText("");
+				square.squarePerimeter.setText("");
 			}
 			
 		});
@@ -230,4 +119,186 @@ public class geometricalCalculate extends JFrame{
 		frame.setLayout(new GridLayout(13,1));	
 	}
 
+}
+
+class circle{
+
+	//create values of circle
+	JButton jbtCalculateCircle = new JButton("Calculate");
+	JButton jbtCleanCircle = new JButton("Clean");
+	JTextField radius = new JTextField(5);
+	JTextField circleArea = new JTextField(5);
+	JTextField circlePerimeter = new JTextField(5);
+	
+	double radiusDouble;
+	double circleAreaDouble;
+	double circlePerimeterDouble;
+	//input and calculate the circle
+	JPanel circleTitle(){
+		JPanel circleTitle = new JPanel();
+		circleTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
+		circleTitle.setSize(100,50);
+		circleTitle.add(new JLabel("Circle:"));
+		
+		return circleTitle;
+	}
+	
+	JPanel circleRadiusInput(){
+		JPanel circleRadiusInput = new JPanel();
+		circleRadiusInput.setLayout(new FlowLayout(FlowLayout.LEFT));
+		circleRadiusInput.setSize(300,50);
+		circleRadiusInput.add(new JLabel("Radius"));
+		circleRadiusInput.add(radius);
+		circleRadiusInput.add(jbtCalculateCircle);
+		circleRadiusInput.add(jbtCleanCircle);
+		
+		return circleRadiusInput;
+	}
+	
+	JPanel circleAreaCalculate(){
+		JPanel circleAreaCalculate = new JPanel();
+		circleAreaCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		circleAreaCalculate.setSize(200,50);
+		circleAreaCalculate.add(new JLabel("The area is: "));
+		circleAreaCalculate.add(circleArea);
+		
+		return circleAreaCalculate;
+	}
+	
+	JPanel circlePerimeterCalculate(){
+		JPanel circlePerimeterCalculate = new JPanel();
+		circlePerimeterCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		circlePerimeterCalculate.setSize(200,50);
+		circlePerimeterCalculate.add(new JLabel("The perimeter is: "));
+		circlePerimeterCalculate.add(circlePerimeter);
+		
+		return circlePerimeterCalculate;
+	}	
+
+}
+
+class sector{
+
+	//create values of sector
+	JButton jbtCalculateSector = new JButton("Calculate");
+	JButton jbtCleanSector = new JButton("Clean");
+	JTextField sectorRadius = new JTextField(5);
+	JTextField sectorAngle = new JTextField(5);
+	JTextField sectorArea = new JTextField(5);
+	JTextField sectorPerimeter = new JTextField(5);
+	
+	double sectorRadiusDouble;
+	double sectorAngleDouble;
+	double sectorAreaDouble;
+	double sectorPerimeterDouble;
+	
+	//input and calculate the sector
+	JPanel sectorTitle(){
+		JPanel sectorTitle = new JPanel();
+		sectorTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
+		sectorTitle.setSize(100,50);
+		sectorTitle.add(new JLabel("Sector:"));
+		
+		return sectorTitle;
+	}
+	
+	JPanel sectorRadiusInput(){
+		JPanel sectorRadiusInput = new JPanel();
+		sectorRadiusInput.setLayout(new FlowLayout(FlowLayout.LEFT));
+		sectorRadiusInput.setSize(200,50);
+		sectorRadiusInput.add(new JLabel("Radius"));
+		sectorRadiusInput.add(sectorRadius);
+		
+		return sectorRadiusInput;
+	}
+	
+	JPanel sectorAngleInput(){
+		JPanel sectorAngleInput = new JPanel();
+		sectorAngleInput.setLayout(new FlowLayout(FlowLayout.LEFT));
+		sectorAngleInput.setSize(300,50);
+		sectorAngleInput.add(new JLabel("Angle"));
+		sectorAngleInput.add(sectorAngle);
+		sectorAngleInput.add(jbtCalculateSector);
+		sectorAngleInput.add(jbtCleanSector);
+		
+		return sectorAngleInput;
+	}
+	
+	JPanel sectorAreaCalculate(){
+		JPanel sectorAreaCalculate = new JPanel();
+		sectorAreaCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		sectorAreaCalculate.setSize(200,50);
+		sectorAreaCalculate.add(new JLabel("The area is: "));
+		sectorAreaCalculate.add(sectorArea);
+		
+		return sectorAreaCalculate;
+	}
+	
+	JPanel sectorPerimeterCalculate(){
+		JPanel sectorPerimeterCalculate = new JPanel();
+		sectorPerimeterCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		sectorPerimeterCalculate.setSize(200,50);
+		sectorPerimeterCalculate.add(new JLabel("The perimeter is: "));
+		sectorPerimeterCalculate.add(sectorPerimeter);
+		
+		return sectorPerimeterCalculate;
+	}
+}
+
+class square{
+
+	//create values of square
+	JButton jbtCalculateSquare = new JButton("Calculate");
+	JButton jbtCleanSquare = new JButton("Clean");
+	JTextField squareLength = new JTextField(5);
+	JTextField squareArea = new JTextField(5);
+	JTextField squarePerimeter = new JTextField(5);
+	
+	double squareLengthDouble;
+	double squareAreaDouble;
+	double squarePerimeterDouble;
+	
+	//input and calculate the square
+	JPanel squareTitle(){
+		JPanel squareTitle = new JPanel();
+		squareTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
+		squareTitle.setSize(100,50);
+		squareTitle.add(new JLabel("Square:"));
+		
+		return squareTitle;
+	}
+	
+	JPanel squareLengthInput(){
+		JPanel squareLengthInput = new JPanel();
+		squareLengthInput.setLayout(new FlowLayout(FlowLayout.LEFT));
+		squareLengthInput.setSize(300,50);
+		squareLengthInput.add(new JLabel("Length"));
+		squareLengthInput.add(squareLength);
+		squareLengthInput.add(jbtCalculateSquare);
+		squareLengthInput.add(jbtCleanSquare);
+		
+		return squareLengthInput;
+	}
+	
+	JPanel squareAreaCalculate(){
+		JPanel squareAreaCalculate = new JPanel();
+		squareAreaCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		squareAreaCalculate.setSize(200,50);
+		squareAreaCalculate.add(new JLabel("The area is: "));
+		squareAreaCalculate.add(squareArea);
+		
+		return squareAreaCalculate;
+	}
+	
+	JPanel squarePerimeterCalculate(){
+		JPanel squarePerimeterCalculate = new JPanel();
+		squarePerimeterCalculate.setLayout(new FlowLayout(FlowLayout.LEFT));
+		squarePerimeterCalculate.setSize(200,50);
+		squarePerimeterCalculate.add(new JLabel("The perimeter is: "));
+		squarePerimeterCalculate.add(squarePerimeter);
+		
+		return squarePerimeterCalculate;
+	}
+	
+	
 }
